@@ -32,7 +32,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true);
         txtDesc.text = "";
         txtTask.text = "";
-        //self.tabBarController?.selectedIndex = 0
+        self.tabBarController?.selectedIndex = 0
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool  {
