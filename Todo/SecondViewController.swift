@@ -8,7 +8,10 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITextFieldDelegate {
+
+    @IBOutlet var txtTask : UITextField!
+    @IBOutlet var txtDesc : UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +23,23 @@ class SecondViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true);
+    }
+
+    @IBAction func btnAddTask_click(sender : UIButton){
+        taskMgr.addtask(txtTask.text, desc: txtDesc.text)
+        self.view.endEditing(true);
+        txtDesc.text = "";
+        txtTask.text = "";
+        //self.tabBarController?.selectedIndex = 0
+    }
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool  {
+        textField.resignFirstResponder();
+
+        return true
+    }
 
 }
 
