@@ -24,16 +24,20 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    //Touch Outside Text Filed hide Keyboard Input
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true);
     }
 
+    //Button Click Event on Save
     @IBAction func btnAddTask_click(sender : UIButton){
+        //Inserting Data to SQlite Task Class Object
         taskMgr.addtask(txtTask.text, descr: txtDesc.text)
         self.view.endEditing(true);
-        
+        //Clearing Text Field
         txtDesc.text = "";
         txtTask.text = "";
+        //on Successfull Save Go to View One
         self.tabBarController?.selectedIndex = 0
     }
 

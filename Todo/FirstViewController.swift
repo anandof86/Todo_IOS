@@ -29,6 +29,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tblTask.reloadData()
     }
 
+    //Table Row Remove Element
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath){
 
         if(editingStyle == UITableViewCellEditingStyle.Delete){
@@ -37,10 +38,12 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
 
+    //Table View Count Index
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return taskMgr.tasks.count
     }
 
+    //Table View Creation
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell : UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Default")
 

@@ -19,6 +19,7 @@ struct task {
 class TaskManager: NSObject {
     var tasks = [task]()
 
+    //Add a New Task
     func addtask(name : String, descr : String){
         var appDel:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         var context:NSManagedObjectContext? = appDel.managedObjectContext
@@ -27,10 +28,9 @@ class TaskManager: NSObject {
         NewTask.setValue(name, forKey: "name")
         NewTask.setValue(descr, forKey: "descr")
         context?.save(nil)
-        println(NewTask)
-        println("Task Saved")
     }
 
+    //List All Tasks
     func listalltasks(){
         let request = NSFetchRequest(entityName: "TodoList")
         request.returnsObjectsAsFaults = false
@@ -44,6 +44,16 @@ class TaskManager: NSObject {
         }else{
             println("No Obejct Found");
         }
+    }
+
+    //Update Task
+    func updatetask(){
+
+    }
+
+    //Delete task
+    func deletetask(){
+
     }
     
 }
