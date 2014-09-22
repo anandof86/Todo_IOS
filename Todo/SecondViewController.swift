@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SecondViewController: UIViewController, UITextFieldDelegate {
 
@@ -15,7 +16,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+                // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +31,15 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     @IBAction func btnAddTask_click(sender : UIButton){
         taskMgr.addtask(txtTask.text, desc: txtDesc.text)
         self.view.endEditing(true);
+        var appDel:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context:NSManagedObjectContext? = appDel.managedObjectContext
+
+        var NewTask = NSEntityDescription.insertNewObjectForEntityForName("TodoList", inManagedObjectContext: context!) as NSManagedObject
+        NewTask.setValue(txtTask.text, forKey: "name")
+        NewTask.setValue(txtDesc.text, forKey: "descr")
+        context?.save(nil)
+        println(NewTask)
+        println("Task Saved")
         txtDesc.text = "";
         txtTask.text = "";
         self.tabBarController?.selectedIndex = 0

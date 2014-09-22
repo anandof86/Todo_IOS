@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -14,6 +15,19 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let request = NSFetchRequest(entityName: "TodoList")
+        request.returnsObjectsAsFaults = false
+        let appDelegate:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        let context:NSManagedObjectContext = appDelegate.managedObjectContext!
+        var results:NSArray! = context.executeFetchRequest(request, error: nil)
+        if(results.count > 0){
+            for res in results{
+                println(res)
+            }
+        }else{
+            println("No Obejct Found");
+        }
+
         // Do any additional setup after loading the view, typically from a nib.
     }
 
