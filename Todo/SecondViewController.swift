@@ -31,13 +31,11 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
     //Button Click Event on Save
     @IBAction func btnAddTask_click(sender : UIButton){
-        //Inserting Data to SQlite Task Class Object
         taskMgr.addtask(txtTask.text, descr: txtDesc.text)
         self.view.endEditing(true);
-        //Clearing Text Field
+        
         txtDesc.text = "";
         txtTask.text = "";
-        //on Successfull Save Go to View One
         self.tabBarController?.selectedIndex = 0
     }
 

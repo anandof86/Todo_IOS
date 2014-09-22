@@ -26,6 +26,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     override func viewWillAppear(animated: Bool) {
+        taskMgr.listalltasks()
         tblTask.reloadData()
     }
 
@@ -45,10 +46,9 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     //Table View Creation
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell : UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Default")
+        let cell : UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Default")
 
         cell.textLabel?.text = taskMgr.tasks[indexPath.row].name
-        cell.detailTextLabel?.text = taskMgr.tasks[indexPath.row].descr
 
         return cell
     }

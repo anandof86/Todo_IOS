@@ -13,7 +13,7 @@ var taskMgr:  TaskManager = TaskManager();
 
 struct task {
     var name = "un-named"
-    var descr = "un-descriped"
+    var descr = "un-named"
 }
 
 class TaskManager: NSObject {
@@ -32,17 +32,15 @@ class TaskManager: NSObject {
 
     //List All Tasks
     func listalltasks(){
+        tasks.removeAll(keepCapacity: 0)
         let request = NSFetchRequest(entityName: "TodoList")
         request.returnsObjectsAsFaults = false
         let appDelegate:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         let context:NSManagedObjectContext = appDelegate.managedObjectContext!
         var results:NSArray! = context.executeFetchRequest(request, error: nil)
-        if(results.count > 0){
-            for res in results{
-                println("\(res)")
-            }
-        }else{
-            println("No Obejct Found");
+        for res in results{
+            //var data = res as task
+            tasks.append(task(name: res.name, descr: res.descr))
         }
     }
 
@@ -53,6 +51,9 @@ class TaskManager: NSObject {
 
     //Delete task
     func deletetask(){
+        var appDel:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context:NSManagedObjectContext? = appDel.managedObjectContext
+
 
     }
     
