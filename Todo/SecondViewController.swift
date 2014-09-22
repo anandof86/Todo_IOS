@@ -29,17 +29,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func btnAddTask_click(sender : UIButton){
-        taskMgr.addtask(txtTask.text, desc: txtDesc.text)
+        taskMgr.addtask(txtTask.text, descr: txtDesc.text)
         self.view.endEditing(true);
-        var appDel:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
-        var context:NSManagedObjectContext? = appDel.managedObjectContext
-
-        var NewTask = NSEntityDescription.insertNewObjectForEntityForName("TodoList", inManagedObjectContext: context!) as NSManagedObject
-        NewTask.setValue(txtTask.text, forKey: "name")
-        NewTask.setValue(txtDesc.text, forKey: "descr")
-        context?.save(nil)
-        println(NewTask)
-        println("Task Saved")
+        
         txtDesc.text = "";
         txtTask.text = "";
         self.tabBarController?.selectedIndex = 0
